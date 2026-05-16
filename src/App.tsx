@@ -1,5 +1,18 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import KPICard, { type CardKPIVariant } from "@/components/KPICard";
+
+type KPI = {
+  title: string,
+  value: string,
+  variant: CardKPIVariant,
+};
+
+const cardData: KPI[] = [
+  {title: "Total Balance", value: "$12,450.00", variant: "default"},
+  {title: "Monthly Income", value: "+$3,200.00", variant: "positive"},
+  {title: "Monthly Expenses", value: "-$1,450.00", variant: "negative"},
+];
 
 export default function App() {
   return (
@@ -50,32 +63,14 @@ export default function App() {
 
             {/* Временные KPI карточки для проверки UI */}
             <div className="grid gap-4 md:grid-cols-3">
-              <Card>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-slate-500">Total Balance</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold">$12,450.00</div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-slate-500">Monthly Income</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold text-green-600">+$3,200.00</div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-slate-500">Monthly Expenses</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold text-red-600">-$1,450.00</div>
-                </CardContent>
-              </Card>
+              {cardData.map((item) =>
+                <KPICard
+                    key={item.title}
+                    title={item.title}
+                    value={item.value}
+                    variant={item.variant}
+                />
+              )}
             </div>
 
             {/* Сюда на следующем шаге мы вставим графики и таблицы */}
