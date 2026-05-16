@@ -17,19 +17,19 @@ export default function App() {
 
             <nav className="space-y-1">
               <Button variant="ghost" className="w-full justify-start gap-3 bg-slate-100 text-indigo-600 font-medium">
-                <span>📊</span> Дашборд
+                <span>📊</span> Dashboard
               </Button>
               <Button variant="ghost" className="w-full justify-start gap-3 text-slate-500 hover:text-slate-900">
-                <span>💳</span> Транзакции
+                <span>💳</span> Transactions
               </Button>
               <Button variant="ghost" className="w-full justify-start gap-3 text-slate-500 hover:text-slate-900">
-                <span>🎯</span> Бюджет
+                <span>🎯</span> Budget
               </Button>
             </nav>
           </div>
 
           <div className="text-xs text-slate-400 border-t border-slate-100 pt-4">
-            v1.0.0 · Подготовлено для портфолио
+            v1.0.0 · Portfolio ready
           </div>
         </aside>
 
@@ -38,9 +38,9 @@ export default function App() {
 
           {/* Хедер страницы */}
           <header className="h-16 border-b border-slate-200 bg-white flex items-center justify-between px-8">
-            <h1 className="text-lg font-semibold text-slate-800">Обзор финансового состояния</h1>
+            <h1 className="text-lg font-semibold text-slate-800">Financial Status Overview</h1>
             <div className="flex items-center gap-4">
-              <span className="text-sm text-slate-500">Привет, Разработчик!</span>
+              <span className="text-sm text-slate-500">Hello, Developer!</span>
               <div className="h-8 w-8 rounded-full bg-slate-200" />
             </div>
           </header>
@@ -52,7 +52,7 @@ export default function App() {
             <div className="grid gap-4 md:grid-cols-3">
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-slate-500">Общий Баланс</CardTitle>
+                  <CardTitle className="text-sm font-medium text-slate-500">Total Balance</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">$12,450.00</div>
@@ -61,7 +61,7 @@ export default function App() {
 
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-slate-500">Доходы за месяц</CardTitle>
+                  <CardTitle className="text-sm font-medium text-slate-500">Monthly Income</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold text-green-600">+$3,200.00</div>
@@ -70,7 +70,7 @@ export default function App() {
 
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-slate-500">Расходы за месяц</CardTitle>
+                  <CardTitle className="text-sm font-medium text-slate-500">Monthly Expenses</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold text-red-600">-$1,450.00</div>
@@ -80,7 +80,7 @@ export default function App() {
 
             {/* Сюда на следующем шаге мы вставим графики и таблицы */}
             <Card className="h-96 flex items-center justify-center border-dashed">
-              <p className="text-slate-400">Место для будущих графиков Recharts</p>
+              <p className="text-slate-400">Place for future Recharts graphs</p>
             </Card>
 
           </div>
