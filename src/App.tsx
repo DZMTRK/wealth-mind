@@ -16,7 +16,7 @@ const cardData: KPI[] = [
 
 export default function App() {
   return (
-      <div className="flex h-screen w-full bg-slate-50 text-slate-900 overflow-hidden">
+      <div className="flex min-h-dvh w-full bg-slate-50 text-slate-900 overflow-hidden">
 
         {/* ЛЕВОЕ БОКОВОЕ МЕНЮ (Sidebar) */}
         <aside className="w-64 bg-white border-r border-slate-200 flex flex-col justify-between p-6">
@@ -30,13 +30,13 @@ export default function App() {
 
             <nav className="space-y-1">
               <Button variant="ghost" className="w-full justify-start gap-3 bg-slate-100 text-indigo-600 font-medium">
-                <span>📊</span> Dashboard
+                <span aria-hidden="true">📊</span> Dashboard
               </Button>
               <Button variant="ghost" className="w-full justify-start gap-3 text-slate-500 hover:text-slate-900">
-                <span>💳</span> Transactions
+                <span aria-hidden="true">💳</span> Transactions
               </Button>
               <Button variant="ghost" className="w-full justify-start gap-3 text-slate-500 hover:text-slate-900">
-                <span>🎯</span> Budget
+                <span aria-hidden="true">🎯</span> Budget
               </Button>
             </nav>
           </div>
@@ -54,7 +54,11 @@ export default function App() {
             <h1 className="text-lg font-semibold text-slate-800">Financial Status Overview</h1>
             <div className="flex items-center gap-4">
               <span className="text-sm text-slate-500">Hello, Developer!</span>
-              <div className="h-8 w-8 rounded-full bg-slate-200" />
+              <div
+                  role="img"
+                  aria-label="User avatar"
+                  className="h-8 w-8 rounded-full bg-slate-200"
+              />
             </div>
           </header>
 

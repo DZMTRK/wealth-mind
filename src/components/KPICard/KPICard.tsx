@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 export type CardKPIVariant = "default" | "positive" | "negative";
 
-interface CardKPIProps {
+export interface CardKPIProps {
     title: string;
     value: string;
     variant?: CardKPIVariant;
