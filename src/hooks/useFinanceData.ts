@@ -3,11 +3,11 @@ import { mockTransactions, mockAccounts } from '../data/mockData';
 import type { TransactionCategory } from '../types/finance';
 
 export function useFinanceData() {
-    // Состояние для фильтрации
+    // Filtering state
     const [selectedMonth, setSelectedMonth] = useState<string>('2026-05'); // Формат YYYY-MM
     const [selectedAccount, setSelectedAccount] = useState<string>('all');
 
-    // 1. Фильтруем транзакции по месяцу и аккаунту с помощью useMemo
+    // 1. Filter transactions by month and account using useMemo
     const filteredTransactions = useMemo(() => {
         return mockTransactions.filter((transaction) => {
             const matchesMonth = transaction.date.startsWith(selectedMonth);
@@ -16,7 +16,7 @@ export function useFinanceData() {
         });
     }, [selectedMonth, selectedAccount]);
 
-    // 2. Считаем KPI (Общий доход и расход за выбранный период) через reduce
+    // 2. Calculate KPI values: total income and expenses for the selected period
     const { totalIncome, totalExpenses } = useMemo(() => {
         return filteredTransactions.reduce(
             (acc, transaction) => {
@@ -31,7 +31,7 @@ export function useFinanceData() {
         );
     }, [filteredTransactions]);
 
-    // 3. Группируем расходы по категориям для PieChart
+    // 3. Group expenses by category for the PieChart
     const categoryData = useMemo(() => {
         const categoriesMap: Record<TransactionCategory, number> = {} as Record<TransactionCategory, number>;
 
@@ -44,14 +44,14 @@ export function useFinanceData() {
                 categoriesMap[t.category] += t.amount;
             });
 
-        // Трансформируем объект в массив, который понимает библиотека графиков Recharts
+        // Transform the object into an array format supported by the Recharts library
         return Object.entries(categoriesMap).map(([name, value]) => ({
             name,
             value,
         }));
     }, [filteredTransactions]);
 
-    // Высчитываем общий текущий баланс по всем кошелькам
+    // Calculate the total current balance across all wallets
     const totalBalance = useMemo(() => {
         return mockAccounts.reduce((sum, acc) => sum + acc.balance, 0);
     }, []);

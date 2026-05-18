@@ -18,7 +18,7 @@ export default function App() {
   return (
       <div className="flex min-h-dvh w-full bg-slate-50 text-slate-900 overflow-hidden">
 
-        {/* ЛЕВОЕ БОКОВОЕ МЕНЮ (Sidebar) */}
+        {/* Left sidebar menu */}
         <aside className="w-64 bg-white border-r border-slate-200 flex flex-col justify-between p-6">
           <div>
             <div className="flex items-center gap-2 mb-8">
@@ -46,10 +46,10 @@ export default function App() {
           </div>
         </aside>
 
-        {/* ГЛАВНАЯ РАБОЧАЯ ОБЛАСТЬ (Main Content) */}
+        {/* Main workspace */}
         <main className="flex-1 flex flex-col overflow-y-auto">
 
-          {/* Хедер страницы */}
+          {/* Page header */}
           <header className="h-16 border-b border-slate-200 bg-white flex items-center justify-between px-8">
             <h1 className="text-lg font-semibold text-slate-800">Financial Status Overview</h1>
             <div className="flex items-center gap-4">
@@ -62,10 +62,10 @@ export default function App() {
             </div>
           </header>
 
-          {/* Контент дашборда */}
+          {/* Dashboard content */}
           <div className="p-8 max-w-7xl w-full mx-auto space-y-6">
 
-            {/* Временные KPI карточки для проверки UI */}
+            {/* Temporary KPI cards for UI validation */}
             <div className="grid gap-4 md:grid-cols-3">
               {cardData.map((item) =>
                 <KPICard
@@ -77,7 +77,7 @@ export default function App() {
               )}
             </div>
 
-            {/* Сюда на следующем шаге мы вставим графики и таблицы */}
+            {/* Charts and tables will be added here in the next step */}
             <Card className="h-96 flex items-center justify-center border-dashed">
               <p className="text-slate-400">Place for future Recharts graphs</p>
             </Card>
