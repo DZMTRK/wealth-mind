@@ -1,20 +1,29 @@
 import { useMemo, useState } from 'react';
 import { mockTransactions, mockAccounts } from '../data/mockData';
-import type { TransactionCategory } from '../types/finance';
+import type { Transaction, TransactionCategory } from '../types/finance';
 
 export function useFinanceData() {
-    // Filtering state
-    const [selectedMonth, setSelectedMonth] = useState<string>('2026-05'); // Формат YYYY-MM
+    const [transactionsList, setTransactionsList] = useState<Transaction[]>(mockTransactions);
+    const [selectedMonth, setSelectedMonth] = useState<string>('2026-05');
     const [selectedAccount, setSelectedAccount] = useState<string>('all');
+
+    // Add new transaction function
+    const addTransaction = (newTx: Omit<Transaction, 'id'>) => {
+        const transactionWithId: Transaction = {
+            ...newTx,
+            id: `t-${Date.now()}`, // Генерируем временный ID
+        };
+        setTransactionsList((prev) => [transactionWithId, ...prev]);
+    };
 
     // 1. Filter transactions by month and account using useMemo
     const filteredTransactions = useMemo(() => {
-        return mockTransactions.filter((transaction) => {
+        return transactionsList.filter((transaction) => {
             const matchesMonth = transaction.date.startsWith(selectedMonth);
             const matchesAccount = selectedAccount === 'all' || transaction.accountId === selectedAccount;
             return matchesMonth && matchesAccount;
         });
-    }, [selectedMonth, selectedAccount]);
+    }, [transactionsList, selectedMonth, selectedAccount]);
 
     // 2. Calculate KPI values: total income and expenses for the selected period
     const { totalIncome, totalExpenses } = useMemo(() => {
@@ -67,5 +76,6 @@ export function useFinanceData() {
         setSelectedMonth,
         selectedAccount,
         setSelectedAccount,
+        addTransaction, // Экспортируем функцию добавления
     };
 }
