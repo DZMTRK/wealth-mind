@@ -76,6 +76,6 @@ export function useFinanceData() {
         setSelectedMonth,
         selectedAccount,
         setSelectedAccount,
-        addTransaction, // Экспортируем функцию добавления
+        addTransaction,
     };
 }

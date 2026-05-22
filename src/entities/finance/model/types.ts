@@ -14,7 +14,7 @@ export interface Transaction {
     amount: number;
     type: TransactionType;
     category: TransactionCategory;
-    date: string; // ISO формат YYYY-MM-DD
+    date: string; // YYYY-MM-DD
     description: string;
     accountId: string;
 }
