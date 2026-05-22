@@ -119,7 +119,8 @@ function TransactionForm({ onAddTransaction }: TransactionFormProps) {
                             <label className="text-xs font-medium text-slate-500">Amount ($)</label>
                             <input
                                 type="number"
-                                step="any"
+                                step="10"
+                                min="0"
                                 {...register("amount", { valueAsNumber: true })}
                                 className="w-full p-2 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white"
                             />
