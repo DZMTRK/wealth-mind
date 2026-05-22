@@ -1,22 +1,28 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/shared/ui";
 import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Legend,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
+    Bar,
+    BarChart,
+    CartesianGrid,
+    Legend,
+    ResponsiveContainer,
+    Tooltip,
+    XAxis,
+    YAxis,
 } from "recharts";
 
+interface IncomeExpenseChartDataItem {
+    date: string;
+    income: number;
+    expense: number;
+}
+
 interface IncomeExpenseChartProps {
-  chartData: any[];
+    chartData: IncomeExpenseChartDataItem[];
 }
 
 export const IncomeExpenseChart = ({ chartData }: IncomeExpenseChartProps) => {
-  return (
-    <Card className="md:col-span-2">
+    return (
+        <Card className="md:col-span-2">
       <CardHeader>
         <CardTitle className="text-base font-semibold text-slate-800">
           Monthly Activity Trend
