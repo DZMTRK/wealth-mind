@@ -1,4 +1,5 @@
-import { KPICard, type CardKPIVariant } from "@/entities/finance";
+import { KPICard } from "@/entities/finance";
+import type { CardKPIVariant } from "@/entities/finance/ui/KPICard";
 
 interface KPI {
   title: string;
