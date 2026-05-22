@@ -1,4 +1,4 @@
-import type { Transaction, Account } from '../types/finance';
+import type { Transaction, Account } from '@/entities/finance/model/types';
 
 export const mockAccounts: Account[] = [
     { id: 'acc-1', name: 'Main Card', type: 'card', balance: 4250, currency: 'USD' },

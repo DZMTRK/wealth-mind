@@ -1,5 +1,5 @@
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import {Card, CardContent, CardHeader, CardTitle} from "@/shared/ui";
+import { cn } from "@/shared/lib";
 
 export type CardKPIVariant = "default" | "positive" | "negative";
 

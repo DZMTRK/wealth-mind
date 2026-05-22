@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
-import { mockTransactions, mockAccounts } from '../data/mockData';
-import type { Transaction, TransactionCategory } from '../types/finance';
+import { mockTransactions, mockAccounts } from "@/shared/api/mockData";
+import type { Transaction, TransactionCategory } from "./types";
 
 export function useFinanceData() {
     const [transactionsList, setTransactionsList] = useState<Transaction[]>(mockTransactions);
