@@ -26,12 +26,12 @@ const transactionCategories = [
 ] as const satisfies readonly TransactionCategory[];
 
 const transactionSchema = z.object({
-    amount: z.number({ error: "Введите корректное число" }).positive("Сумма должна быть больше нуля"),
+    amount: z.number({ error: "Enter a valid number" }).positive("Amount must be greater than zero"),
     type: z.enum(["income", "expense"] as const),
-    category: z.enum(transactionCategories, { error: "Выберите категорию" }),
-    date: z.string().min(1, "Выберите дату"),
-    description: z.string().min(3, "Описание должно быть минимум 3 символа"),
-    accountId: z.string().min(1, "Выберите счет"),
+    category: z.enum(transactionCategories, { error: "Select a category" }),
+    date: z.string().min(1, "Select a date"),
+    description: z.string().min(3, "Description must be at least 3 characters"),
+    accountId: z.string().min(1, "Select an account"),
 });
 
 type TransactionFormValues = z.infer<typeof transactionSchema>;
@@ -41,7 +41,7 @@ interface TransactionFormProps {
 }
 
 function TransactionForm({ onAddTransaction }: TransactionFormProps) {
-    // Стейт для контролируемого закрытия модального окна
+    // State for controlled dialog closing
     const [isOpen, setIsOpen] = useState(false);
 
     const {
@@ -78,42 +78,42 @@ function TransactionForm({ onAddTransaction }: TransactionFormProps) {
             description: "",
             accountId: "acc-1",
         });
-        setIsOpen(false); // <-- Автоматически закрываем диалог после успешной отправки
+        setIsOpen(false); // Automatically close the dialog after successful submission
     };
 
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
 
-            {/* Кнопка-триггер, которая открывает диалог */}
+            {/* Trigger button that opens the dialog */}
             <DialogTrigger asChild>
                 <Button className="bg-indigo-600 hover:bg-indigo-700 text-white gap-2 shadow-sm font-medium">
-                    <Plus className="h-4 w-4" /> Добавить операцию
+                    <Plus className="h-4 w-4" /> Add transaction
                 </Button>
             </DialogTrigger>
 
             <DialogContent className="sm:max-w-[425px] bg-white p-6 rounded-lg">
                 <DialogHeader>
-                    <DialogTitle className="text-lg font-semibold text-slate-800">Новая операция</DialogTitle>
+                    <DialogTitle className="text-lg font-semibold text-slate-800">New transaction</DialogTitle>
                 </DialogHeader>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 text-sm mt-2">
 
-                    {/* Тип операции */}
+                    {/* Transaction type */}
                     <div className="grid grid-cols-2 gap-2">
                         <label className="flex items-center justify-center gap-2 p-2 border border-slate-200 rounded-md cursor-pointer text-slate-600 font-medium has-[:checked]:bg-red-50 has-[:checked]:border-red-500 has-[:checked]:text-red-700">
                             <input type="radio" value="expense" {...register("type")} className="sr-only" />
-                            Расход
+                            Expense
                         </label>
                         <label className="flex items-center justify-center gap-2 p-2 border border-slate-200 rounded-md cursor-pointer text-slate-600 font-medium has-[:checked]:bg-green-50 has-[:checked]:border-green-500 has-[:checked]:text-green-700">
                             <input type="radio" value="income" {...register("type")} className="sr-only" />
-                            Доход
+                            Income
                         </label>
                     </div>
 
-                    {/* Сумма и Дата */}
+                    {/* Amount and date */}
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-1">
-                            <label className="text-xs font-medium text-slate-500">Сумма ($)</label>
+                            <label className="text-xs font-medium text-slate-500">Amount ($)</label>
                             <input
                                 type="number"
                                 step="any"
@@ -124,7 +124,7 @@ function TransactionForm({ onAddTransaction }: TransactionFormProps) {
                         </div>
 
                         <div className="space-y-1">
-                            <label className="text-xs font-medium text-slate-500">Дата</label>
+                            <label className="text-xs font-medium text-slate-500">Date</label>
                             <input
                                 type="date"
                                 {...register("date")}
@@ -134,10 +134,10 @@ function TransactionForm({ onAddTransaction }: TransactionFormProps) {
                         </div>
                     </div>
 
-                    {/* Категория и Счет */}
+                    {/* Category and account */}
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-1">
-                            <label className="text-xs font-medium text-slate-500">Категория</label>
+                            <label className="text-xs font-medium text-slate-500">Category</label>
                             <select
                                 {...register("category")}
                                 className="w-full p-2 bg-white border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -150,24 +150,24 @@ function TransactionForm({ onAddTransaction }: TransactionFormProps) {
                         </div>
 
                         <div className="space-y-1">
-                            <label className="text-xs font-medium text-slate-500">Счет</label>
+                            <label className="text-xs font-medium text-slate-500">Account</label>
                             <select
                                 {...register("accountId")}
                                 className="w-full p-2 bg-white border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             >
-                                <option value="acc-1">Основная карта</option>
-                                <option value="acc-2">Наличные</option>
-                                <option value="acc-3">Сберегательный счет</option>
+                                <option value="acc-1">Main card</option>
+                                <option value="acc-2">Cash</option>
+                                <option value="acc-3">Savings account</option>
                             </select>
                         </div>
                     </div>
 
-                    {/* Описание */}
+                    {/* Description */}
                     <div className="space-y-1">
-                        <label className="text-xs font-medium text-slate-500">Описание операции</label>
+                        <label className="text-xs font-medium text-slate-500">Transaction description</label>
                         <input
                             type="text"
-                            placeholder="Например: Покупка продуктов"
+                            placeholder="Example: Grocery shopping"
                             {...register("description")}
                             className="w-full p-2 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white"
                         />
@@ -176,10 +176,10 @@ function TransactionForm({ onAddTransaction }: TransactionFormProps) {
 
                     <div className="flex justify-end gap-2 pt-2">
                         <Button type="button" variant="ghost" onClick={() => setIsOpen(false)}>
-                            Отмена
+                            Cancel
                         </Button>
                         <Button type="submit" className="bg-indigo-600 hover:bg-indigo-700 text-white">
-                            Сохранить
+                            Save
                         </Button>
                     </div>
                 </form>
